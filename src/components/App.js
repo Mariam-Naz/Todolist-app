@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 
-function App() {
+const App = () =>{
 const [item , setItemName] = useState(""); 
 const [itemDisplay , setItemDisplay]=useState([]);
-function handleChange(event){
+const handleChange = (event) =>{
   setItemName(event.target.value)
 }
-function display(){
+const display =() =>{
   setItemDisplay(prevValue => {
   return [...prevValue,item];
   });
