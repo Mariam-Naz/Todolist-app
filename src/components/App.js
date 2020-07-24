@@ -1,34 +1,32 @@
-import React, {useState} from "react";
-
+import React, { useState } from "react";
+import Heading from "./Heading";
+import Button from "./Button";
+import List from "./List";
 function App() {
-const [item , setItemName] = useState(""); 
-const [itemDisplay , setItemDisplay]=useState([]);
-function handleChange(event){
-  setItemName(event.target.value)
-}
-function display(){
-  setItemDisplay(prevValue => {
-  return [...prevValue,item];
-  });
-  setItemName("");
+  const [inputText, setInputText] = useState("");
+  const [items, setItems] = useState([]);
+
+  function handleChange(event) {
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
+
+  function addItem() {
+    setItems(prevItems => {
+      return [...prevItems, inputText];
+    });
+    setInputText("");
   }
 
   return (
     <div className="container">
-      <div className="heading">
-        <h1>To-Do List</h1>
-      </div>
+      <Heading />
       <div className="form">
-        <input onChange={handleChange} type="text" value={item} />
-        <button onClick={display}>
-          <span>Add</span>
-        </button>
+        <input onChange={handleChange} type="text" value={inputText} />
+      <Button addItem = {addItem}/>
       </div>
       <div>
-        <ul> 
-        {itemDisplay.map(itd=> 
-        <li key={itd.toString()}>{itd}</li>)}
-        </ul>
+        <List items = {items} />
       </div>
     </div>
   );
