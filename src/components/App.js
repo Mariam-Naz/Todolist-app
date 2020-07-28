@@ -10,7 +10,6 @@ function App() {
     const newValue = event.target.value;
     setInputText(newValue);
   }
-
   function addItem() {
     setItems(prevItems => {
       return [...prevItems, inputText];
@@ -18,6 +17,13 @@ function App() {
     setInputText("");
   }
 
+  function deleted(id){
+    setItems(prevValue =>{
+        return prevValue.filter((item , index)=>{
+          return index !== id;
+        })
+    })
+  }
   return (
     <div className="container">
      <Heading />
@@ -27,13 +33,12 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map(todoItem => (
-            <ToDoList todoItem = {todoItem} item={items} />
+          {items.map((todoItem,index) => (
+            <ToDoList key={index} id={index} todoItem = {todoItem} onChecked={deleted} />
           ))}
         </ul>
       </div>
     </div>
   );
 }
-
 export default App;
