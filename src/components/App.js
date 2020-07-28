@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Heading from "./Heading";
+import ToDoList from "./ToDoList";
 import Button from "./Button";
-import List from "./List";
+import Heading from "./Heading";
 function App() {
   const [inputText, setInputText] = useState("");
   const [items, setItems] = useState([]);
@@ -20,13 +20,17 @@ function App() {
 
   return (
     <div className="container">
-      <Heading />
+     <Heading />
       <div className="form">
         <input onChange={handleChange} type="text" value={inputText} />
-      <Button addItem = {addItem}/>
+        <Button addItem={addItem} />
       </div>
       <div>
-        <List items = {items} />
+        <ul>
+          {items.map(todoItem => (
+            <ToDoList todoItem = {todoItem} />
+          ))}
+        </ul>
       </div>
     </div>
   );
