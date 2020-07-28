@@ -28,7 +28,7 @@ function App() {
       <div>
         <ul>
           {items.map(todoItem => (
-            <ToDoList todoItem = {todoItem} />
+            <ToDoList todoItem = {todoItem} item={items} />
           ))}
         </ul>
       </div>
